@@ -88,12 +88,12 @@ public class Fraction {
     
     public Fraction abs()
     {
-        return new Fraction(Math.abs(numerator), Math.abs(denominator));
+        return new Fraction(Math.abs(getNumerator()), Math.abs(getDenominator()));
     }
     
     public Fraction negate()
     {
-        return new Fraction(numerator * -1, denominator);
+        return new Fraction(getNumerator() * -1, getDenominator());
     }
     
     private int myGcd(int a, int b) {
