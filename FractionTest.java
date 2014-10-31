@@ -28,6 +28,11 @@ if (!i.equals(f.add(g))) System.out.println("Addition failed");
 Fraction j = new Fraction(-1,5);
 if (!j.equals(f.subtract(g))) System.out.println("Subtraction failed");
 
+//test division
+Fraction k = new Fraction(3,5);
+if (!k.equals(f.divide(g))) System.out.println("Division failed");
+
+
 }
 static void test(Fraction f1, Fraction f2, String msg){
 if (! f1.equals(f2))
