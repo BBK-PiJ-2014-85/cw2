@@ -59,8 +59,15 @@ public class Fraction {
         return result;
     }
     
-public Fraction multiply(Fraction other) {
+    public Fraction multiply(Fraction other) {
         int num = this.getNumerator() * other.getNumerator();
+        int denom = this.getDenominator() * other.getDenominator();
+        return new Fraction(num, denom);
+    }
+    
+    public Fraction add(Fraction other)
+    {
+        int num= (this.getNumerator() * other.getDenominator()) + (other.getNumerator() * this.getDenominator());
         int denom = this.getDenominator() * other.getDenominator();
         return new Fraction(num, denom);
     }
