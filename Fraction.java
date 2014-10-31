@@ -1,6 +1,13 @@
 /**
 * Created by keith for the second coursework assignment.
 */
+
+/*
+Improvements which could be added:
+    - if both deonomiator and numerator are negative on input, make them both positive
+    - if signs are different, have the top one negative by convention
+*/
+
 public class Fraction {
     private int numerator;
     private int denominator;
@@ -21,7 +28,12 @@ public class Fraction {
     @Override
 
     public String toString() {
-        return "" + getNumerator() + '/' + getDenominator();
+    
+    // added a check for -1 as well as this can be simplified in a similar way
+    
+        if (getDenominator() == 1) return "" + getNumerator();
+        else if (getDenominator() == -1) return "" + (getNumerator() * -1);
+        else return "" + getNumerator() + '/' + getDenominator();
     }
 
     public int getNumerator() {
