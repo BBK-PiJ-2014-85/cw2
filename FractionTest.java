@@ -15,7 +15,7 @@ test(new Fraction(1, 2),new Fraction(1, 2),"error test 1");
 test(new Fraction(1, 2),new Fraction(3, 6),"error test 2");
 test(new Fraction(-1, 2),new Fraction(1, -2),"error test 3");
 test(new Fraction(-1, -2),new Fraction(1, 2),"error test 4");
-test(new Fraction(4, -8),new Fraction(1, 2),"error test 5");
+test(new Fraction(4, -8),new Fraction(1, -2),"error test 5");
 // extend with extra tests
 }
 static void test(Fraction f1, Fraction f2, String msg){
