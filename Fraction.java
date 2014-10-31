@@ -86,6 +86,16 @@ public class Fraction {
         return new Fraction(num, denom);
     }
     
+    public Fraction abs()
+    {
+        return new Fraction(Math.abs(numerator), Math.abs(denominator));
+    }
+    
+    public Fraction negate()
+    {
+        return new Fraction(numerator * -1, denominator);
+    }
+    
     private int myGcd(int a, int b) {
         while (b != 0) {
             int t = b;
