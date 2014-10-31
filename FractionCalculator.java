@@ -24,13 +24,13 @@ public class FractionCalculator{
                 int i=0;
                 String numString="", denString="";
                 
-                while (Character.isDigit(input.charAt(i)))
+                while (i < input.length() && Character.isDigit(input.charAt(i)))
                 {
                     numString = input.substring(0,i+1);
                     i++;
                 }
                 
-                if (input.charAt(i) == '/')
+                if (i < input.length() && input.charAt(i) == '/')
                 {
                     int start = i+1;
                     int j = i+1;
