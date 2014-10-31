@@ -32,6 +32,17 @@ if (!j.equals(f.subtract(g))) System.out.println("Subtraction failed");
 Fraction k = new Fraction(3,5);
 if (!k.equals(f.divide(g))) System.out.println("Division failed");
 
+//test abs
+Fraction l = new Fraction(-3,5);
+if (!k.equals(l.abs())) System.out.print("Abs failed");
+//test doesnt negate negative number - should output a message
+if (!l.equals(k.abs())) System.out.println("Abs correctly unequal");
+
+//test negate
+if (!k.equals(l.negate())) System.out.print("negate failed");
+//test doesnt negate negative number - should output a message
+if (!l.equals(k.negate())) System.out.println("negate failed");
+
 
 }
 static void test(Fraction f1, Fraction f2, String msg){
