@@ -30,13 +30,14 @@ public class FractionCalculator{
                     i++;
                 }
                 
-                if (input.charAt(i+1) == '/')
+                if (input.charAt(i) == '/')
                 {
-                    int start = i+2;
-                    while(Character.isDigit(input.charAt(i+2))) //assuming correct input
+                    int start = i+1;
+                    int j = i+1;
+                    while( j < input.length() && Character.isDigit(input.charAt(j))) //assuming correct input
                     {
-                        denString = input.substring(start,i+3);
-                        i++;
+                        denString = input.substring(start,j+1);
+                        j++;
                     }
                 }
             
