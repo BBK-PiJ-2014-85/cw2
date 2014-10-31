@@ -43,6 +43,17 @@ if (!k.equals(l.negate())) System.out.print("negate failed");
 //test doesnt negate negative number - should output a message
 if (!l.equals(k.negate())) System.out.println("negate failed");
 
+//test if denominator stays negative when simplyfying
+Fraction m = new Fraction(1,-2);
+System.out.println(m.toString());
+/* negations do not get passed to numerator, which the simplification in toString should account for */
+
+//test toString improvements
+Fraction n = new Fraction(-7,-1);
+Fraction o = new Fraction(-7,1);
+if (!n.toString().equals("7")) System.out.println("Error in toString test 1");
+if (!o.toString().equals("-7")) System.out.println("Error in toString test 2");
+
 
 }
 static void test(Fraction f1, Fraction f2, String msg){
