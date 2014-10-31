@@ -24,6 +24,10 @@ test(new Fraction(4,-8), new Fraction(1,2),"correctly unequal");
 Fraction i = new Fraction(8,10);
 if (!i.equals(f.add(g))) System.out.println("Addition failed");
 
+//test subtraction
+Fraction j = new Fraction(-1,5);
+if (!j.equals(f.subtract(g))) System.out.println("Subtraction failed");
+
 }
 static void test(Fraction f1, Fraction f2, String msg){
 if (! f1.equals(f2))
