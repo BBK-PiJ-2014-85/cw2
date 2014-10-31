@@ -24,11 +24,3 @@ System.out.println(msg);
 }
 }
 
-    Status
-    API
-    Training
-    Shop
-    Blog
-    About
-
-    ©
