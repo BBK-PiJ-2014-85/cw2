@@ -2,12 +2,6 @@
 * Created by keith for the second coursework assignment.
 */
 
-/*
-Improvements which could be added:
-    - if both deonomiator and numerator are negative on input, make them both positive
-    - if signs are different, have the top one negative by convention
-*/
-
 public class Fraction {
     private int numerator;
     private int denominator;
