@@ -59,6 +59,16 @@ public class FractionCalculator{
 
         return current;
     }
+    
+    private boolean isIn(String word, String[] commands)
+    {
+        for (int i=0; i< commands.length; i++)
+        {
+            if (commands[i].equals(word)) return true;
+        }
+        
+        return false;
+    }
 
     public static void main (String[] args)
     {
