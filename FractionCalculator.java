@@ -30,6 +30,8 @@ public class FractionCalculator{
     {
         String currentWord = "";
         
+        if (input.length() > 0)
+        {
         for (int i = 0; i <= input.length(); i++)
         {
             if (currentWord != "" && (i == input.length() || input.charAt(i) == ' ') ) // evaluate full word
@@ -70,17 +72,18 @@ public class FractionCalculator{
                     quit = true;
                     break;
                 }
-                else if (isIn(currentWord, callAdd))        {if (!updateOperator(Operator.ADD)) break;}
-                else if (isIn(currentWord, callSubtract))   {if (!updateOperator(Operator.SUBTRACT)) break;}
-                else if (isIn(currentWord, callMultiply))   {if (!updateOperator(Operator.MULTIPLY)) break;}
-                else if (isIn(currentWord, callDivide))     {if (!updateOperator(Operator.DIVIDE)) break;}
+                else if (isIn(currentWord, callAdd))        {if (!updateOperator(Operator.ADD)) return new Fraction(0,1);}
+                else if (isIn(currentWord, callSubtract))   {if (!updateOperator(Operator.SUBTRACT)) return new Fraction(0,1);}
+                else if (isIn(currentWord, callMultiply))   {if (!updateOperator(Operator.MULTIPLY)) return new Fraction(0,1);}
+                else if (isIn(currentWord, callDivide))     {if (!updateOperator(Operator.DIVIDE)) return new Fraction(0,1);}
                 else if (isIn(currentWord, callAbs))        current = current.abs();
                 else if (isIn(currentWord, callNegate))     current = current.negate();
                 else if (isIn(currentWord, callClear))      current = new Fraction(0,1); //operands not cleared as cw didnt want this
                 else
                 {
-                   resetCalculator("Error: input " + currentWord + " not understood. Calculator reset.");
-                   break;
+                    System.out.println("Error: input \"" + currentWord + "\" not understood. Calculator reset.");
+                    currentOp = Operator.NONE;
+                    return new Fraction(0,1);
                 }
                 
                 currentWord="";
@@ -88,7 +91,8 @@ public class FractionCalculator{
             }
             else if (input.charAt(i) != ' ') currentWord += input.charAt(i);
         }
-
+        
+        }
 
         return current;
     }
@@ -112,18 +116,13 @@ public class FractionCalculator{
         }
         else
         {
-            resetCalculator("Error: Two operators input consecutively. Calculator reset.");
+            System.out.println("Error: Two operators input consecutively. Calculator reset.");
+            currentOp = Operator.NONE;
             return false;
         }
     
     }
 
-    public void resetCalculator(String message)
-    {
-        currentValue = new Fraction(0,1);
-        currentOp = Operator.NONE;
-        System.out.println(message);
-    }
 
     public static void main (String[] args)
     {
@@ -135,12 +134,12 @@ public class FractionCalculator{
     
         while (!fc.quit)
         {
-            System.out.print(fc.currentValue.toString() + " ");
+            System.out.print(fc.currentValue.toString() + "\n\t" );
             String input = kb.nextLine();
-            System.out.println(input);
             fc.currentValue = fc.evaluate(fc.currentValue, input );
         }
     
+        System.out.println(fc.currentValue.toString());
         System.out.println("Goodbye");
     
     }
