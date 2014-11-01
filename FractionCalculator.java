@@ -62,8 +62,21 @@ public class FractionCalculator{
                 {
                     updateOperator(Operator.ADD);
                 }
+                else if (isIn(currentWord, callSubtract))
+                {
+                    updateOperator(Operator.SUBTRACT);
+                }
+                else if (isIn(currentWord, callMultiply))
+                {
+                    updateOperator(Operator.MULTIPLY);
+                }
+                else if (isIn(currentWord, callDivide))
+                {
+                    updateOperator(Operator.DIVIDE);
+                }
                 
                 currentWord="";
+            
             }
             else if (input.charAt(i) != ' ') currentWord += input.charAt(i);
         }
