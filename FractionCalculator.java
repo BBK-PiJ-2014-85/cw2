@@ -65,7 +65,7 @@ public class FractionCalculator{
                 
                 currentWord="";
             }
-            else currentWord += input.charAt(i);
+            else if (input.charAt(i) != ' ') currentWord += input.charAt(i);
         }
 
 
