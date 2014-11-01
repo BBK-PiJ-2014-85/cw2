@@ -19,7 +19,8 @@ test(new Fraction(-1, -2),new Fraction(1, 2),"error test 4");
 test(new Fraction(4, -8),new Fraction(1, -2),"error test 5");
 // tests that correctly identifies when not equal - should print a message saying correctly unequal
 test(new Fraction(4,-8), new Fraction(1,2),"correctly unequal");
-test(new Fraction(-1, 2),new Fraction(-1, 2),"error: doesn't consider opposite signs on num/denom as equal");
+test(new Fraction(-1, 2),new Fraction(1, -2),"error: doesn't consider opposite signs on num/denom as equal");
+test(new Fraction(-1,-3), new Fraction(1,3),"error: comparing negative nom and denom not same overall as positive");
 
 // test addition
 Fraction i = new Fraction(8,10);
@@ -47,13 +48,15 @@ if (!l.equals(k.negate())) System.out.println("negate failed");
 //test if denominator stays negative when simplyfying
 Fraction m = new Fraction(1,-2);
 System.out.println(m.toString());
-/* negations do not get passed to numerator, which the simplification in toString should account for */
+/* negations do not get passed to numerator. In fact, all negations are simplified to be held on denominator*/
 
 //test toString improvements
 Fraction n = new Fraction(-7,-1);
 Fraction o = new Fraction(-7,1);
 if (!n.toString().equals("7")) System.out.println("Error in toString test 1");
 if (!o.toString().equals("-7")) System.out.println("Error in toString test 2");
+
+
 
 
 }
