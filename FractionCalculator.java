@@ -3,12 +3,15 @@ public class FractionCalculator{
     private Fraction currentValue;
     private Operator currentOp;
     private String[] callAbs, callNegate, callClear, callQuit, callAdd, callSubtract, callDivide, callMultiply;
+    private boolean quit;
     
     public FractionCalculator()
     {
         currentValue = new Fraction(0,1);
         currentOp = Operator.NONE;
+        quit = false;
         
+        // not checking these values are unique as out of scope, although if repeats then unexpected outputs may occur
         callAbs = new String[]{"a", "A", "abs"};
         callNegate = new String[]{"n", "N", "neg"};
         callClear = new String[] {"c", "C", "clear"};
@@ -58,21 +61,22 @@ public class FractionCalculator{
                     currentOp = Operator.NONE;
                 
                 }
-                else if (isIn(currentWord, callAdd))
+                else if (isIn(currentWord, callQuit))
                 {
-                    updateOperator(Operator.ADD);
+                    quit = true;
+                    break;
                 }
-                else if (isIn(currentWord, callSubtract))
+                else if (isIn(currentWord, callAdd))        if (!updateOperator(Operator.ADD)) break;
+                else if (isIn(currentWord, callSubtract))   if (!updateOperator(Operator.SUBTRACT)) break;
+                else if (isIn(currentWord, callMultiply))   if (!updateOperator(Operator.MULTIPLY)) break;
+                else if (isIn(currentWord, callDivide))     if (!updateOperator(Operator.DIVIDE)) break;
+                else if (isIn(currentWord, callAbs))        current = current.abs();
+                else if (isIn(currentWord, callNegate))     current = current.negate();
+                else if (isIn(currentWord, callClear))      current = new Fraction(0,1); //operands not cleared as cw didnt want this
+                else
                 {
-                    updateOperator(Operator.SUBTRACT);
-                }
-                else if (isIn(currentWord, callMultiply))
-                {
-                    updateOperator(Operator.MULTIPLY);
-                }
-                else if (isIn(currentWord, callDivide))
-                {
-                    updateOperator(Operator.DIVIDE);
+                   resetCalculator("Error: input " + currentWord + " not understood. Calculator reset.");
+                   break;
                 }
                 
                 currentWord="";
@@ -95,15 +99,26 @@ public class FractionCalculator{
         return false;
     }
     
-    public void updateOperator(Operator newOp)
+    public boolean updateOperator(Operator newOp)
     {
-        if (currentOp == Operator.NONE) currentOp = newOp;
-        else resetCalculator();
+        if (currentOp == Operator.NONE)
+        {
+            currentOp = newOp;
+            return true;
+        }
+        else
+        {
+            resetCalculator("Error: Two operators input consecutively. Calculator reset.");
+            return false;
+        }
+    
     }
 
-    public void resetCalculator()
+    public void resetCalculator(String message)
     {
-    
+        currentValue = new Fraction(0,1);
+        currentOp = Operator.NONE;
+        System.out.println(message);
     }
 
     public static void main (String[] args)
