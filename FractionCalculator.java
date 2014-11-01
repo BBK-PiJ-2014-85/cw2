@@ -1,3 +1,7 @@
+
+import java.util.Scanner;
+
+
 public class FractionCalculator{
 
     private Fraction currentValue;
@@ -66,10 +70,10 @@ public class FractionCalculator{
                     quit = true;
                     break;
                 }
-                else if (isIn(currentWord, callAdd))        if (!updateOperator(Operator.ADD)) break;
-                else if (isIn(currentWord, callSubtract))   if (!updateOperator(Operator.SUBTRACT)) break;
-                else if (isIn(currentWord, callMultiply))   if (!updateOperator(Operator.MULTIPLY)) break;
-                else if (isIn(currentWord, callDivide))     if (!updateOperator(Operator.DIVIDE)) break;
+                else if (isIn(currentWord, callAdd))        {if (!updateOperator(Operator.ADD)) break;}
+                else if (isIn(currentWord, callSubtract))   {if (!updateOperator(Operator.SUBTRACT)) break;}
+                else if (isIn(currentWord, callMultiply))   {if (!updateOperator(Operator.MULTIPLY)) break;}
+                else if (isIn(currentWord, callDivide))     {if (!updateOperator(Operator.DIVIDE)) break;}
                 else if (isIn(currentWord, callAbs))        current = current.abs();
                 else if (isIn(currentWord, callNegate))     current = current.negate();
                 else if (isIn(currentWord, callClear))      current = new Fraction(0,1); //operands not cleared as cw didnt want this
@@ -123,6 +127,21 @@ public class FractionCalculator{
 
     public static void main (String[] args)
     {
+        FractionCalculator fc = new FractionCalculator();
+        
+        System.out.println("Welcome Paul to the Fraction calculator.");
+    
+        Scanner kb = new Scanner(System.in);
+    
+        while (!fc.quit)
+        {
+            System.out.print(fc.currentValue.toString() + " ");
+            String input = kb.nextLine();
+            System.out.println(input);
+            fc.currentValue = fc.evaluate(fc.currentValue, input );
+        }
+    
+        System.out.println("Goodbye");
     
     }
 
