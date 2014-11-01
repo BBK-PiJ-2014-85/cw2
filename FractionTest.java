@@ -19,6 +19,7 @@ test(new Fraction(-1, -2),new Fraction(1, 2),"error test 4");
 test(new Fraction(4, -8),new Fraction(1, -2),"error test 5");
 // tests that correctly identifies when not equal - should print a message saying correctly unequal
 test(new Fraction(4,-8), new Fraction(1,2),"correctly unequal");
+test(new Fraction(-1, 2),new Fraction(-1, 2),"error: doesn't consider opposite signs on num/denom as equal");
 
 // test addition
 Fraction i = new Fraction(8,10);
