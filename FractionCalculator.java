@@ -47,8 +47,20 @@ public class FractionCalculator{
                         denom = Integer.parseInt(currentWord.substring(fractionLocation + 1));
                     }
                     
-                    current = new Fraction(num, denom);
+                    Fraction numberInput = new Fraction(num, denom);
+                    
+                    if (currentOp == Operator.NONE) current = numberInput;
+                    else if (currentOp == Operator.ADD) current = current.add(numberInput);
+                    else if (currentOp == Operator.SUBTRACT) current = current.subtract(numberInput);
+                    else if (currentOp == Operator.MULTIPLY) current = current.multiply(numberInput);
+                    else if (currentOp == Operator.DIVIDE) current = current.divide(numberInput);
+                    
+                    currentOp = Operator.NONE;
                 
+                }
+                else if (isIn(currentWord, callAdd))
+                {
+                    updateOperator(Operator.ADD);
                 }
                 
                 currentWord="";
@@ -69,6 +81,17 @@ public class FractionCalculator{
         
         return false;
     }
+    
+    public void updateOperator(Operator newOp)
+    {
+        if (currentOp == Operator.NONE) currentOp = newOp;
+        else resetCalculator();
+    }
+
+    public void resetCalculator()
+    {
+    
+    }
 
     public static void main (String[] args)
     {
@@ -78,5 +101,5 @@ public class FractionCalculator{
 }
 
 enum Operator{
-    NONE, ADD, SUBSTRACT, MULTIPLY, DIVIDE
+    NONE, ADD, SUBTRACT, MULTIPLY, DIVIDE
 }
