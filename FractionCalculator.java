@@ -25,7 +25,7 @@ public class FractionCalculator{
         
         for (int i = 0; i <= input.length(); i++)
         {
-            if (i == input.length() || input.charAt(i) == ' ') // evaluate full word
+            if (currentWord != "" && (i == input.length() || input.charAt(i) == ' ') ) // evaluate full word
             {
                 if (Character.isDigit(currentWord.charAt(0)) || (currentWord.length() > 1 && Character.isDigit(currentWord.charAt(1))))
                     //its a number
@@ -47,7 +47,7 @@ public class FractionCalculator{
                         denom = Integer.parseInt(currentWord.substring(fractionLocation + 1));
                     }
                     
-                    return new Fraction(num, denom);
+                    current = new Fraction(num, denom);
                 
                 }
                 
@@ -57,7 +57,7 @@ public class FractionCalculator{
         }
 
 
-        return null;
+        return current;
     }
 
     public static void main (String[] args)
