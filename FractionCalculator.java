@@ -101,7 +101,7 @@ public class FractionCalculator{
         return current;
     }
     
-    public boolean isValidNumber(String input)
+    private boolean isValidNumber(String input)
     {
         if (input.length() == 0 || (input.length() == 1 && input.charAt(0) == '-') ) return false;
      
