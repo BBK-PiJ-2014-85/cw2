@@ -70,6 +70,7 @@ public class FractionCalculator{
                 else if (isIn(currentWord, callQuit))
                 {
                     quit = true;
+                    currentOp = Operator.NONE;
                     break;
                 }
                 else if (isIn(currentWord, callAdd))        {if (!updateOperator(Operator.ADD)) return new Fraction(0,1);}
