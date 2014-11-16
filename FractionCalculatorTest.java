@@ -17,6 +17,22 @@ public class FractionCalculatorTest{
     if (!fc.evaluate(new Fraction(1,2), "-1 1/2").equals(new Fraction(1,2))) System.out.println("error: test 7");
     if (!fc.evaluate(new Fraction(1,2), "-1/2 -1").equals(new Fraction(1,-1))) System.out.println("error: test 8");
     
+    // test isValidNumber() method - Passed but now commented out as made private method
+    /*
+    if (!fc.isValidNumber("1456")) System.out.println("Error: isValidNumber() test 1 failed");
+    if (!fc.isValidNumber("1/-2")) System.out.println("Error: isValidNumber() test 2 failed");
+    if (fc.isValidNumber(" ")) System.out.println("Error: isValidNumber() test 3 failed");
+    if (fc.isValidNumber("")) System.out.println("Error: isValidNumber() test 4 failed");
+    if (fc.isValidNumber("1/")) System.out.println("Error: isValidNumber() test 5 failed");
+    if (!fc.isValidNumber("-1")) System.out.println("Error: isValidNumber() test 6 failed");
+    if (!fc.isValidNumber("1")) System.out.println("Error: isValidNumber() test 7 failed");
+    if (!fc.isValidNumber("40/7")) System.out.println("Error: isValidNumber() test 8 failed");
+    if (fc.isValidNumber("6/5/1")) System.out.println("Error: isValidNumber() test 9 failed");
+    if (fc.isValidNumber("5/2-3")) System.out.println("Error: isValidNumber() test 10 failed");
+    if (fc.isValidNumber("-")) System.out.println("Error: isValidNumber() test 11 failed");
+    if (fc.isValidNumber("-7f")) System.out.println("Error: isValidNumber() test 11 failed");
+    */
+    
     // test isIn() array checker - commented out as now made private method
     /*
     if(!fc.isIn("A",new String[]{"a", "A", "abs"})) System.out.println("Error: isIn() test 1 failed");
@@ -77,13 +93,14 @@ public class FractionCalculatorTest{
     fc.evaluate(new Fraction(1,1),"*");
     if (!fc.evaluate(new Fraction(-1,2), " / 1/2 *").equals(new Fraction(0,1))) System.out.println("Error: calculator not cleared on operator error");
     if (!fc.evaluate(new Fraction(1,2), " 2").equals(new Fraction(2,1))) System.out.println("Error: operator not cleared when producing operator error");
+
+    System.out.println("The following line should have an error printed for having the word \"typo\" not understood:");
+    if (!fc.evaluate(new Fraction(-1,2), " 1/2 * typo *").equals(new Fraction(0,1))) System.out.println("Error: calculator value not cleared when not understanding an input");
+    if (!fc.evaluate(new Fraction(-1,2), " 1/2").equals(new Fraction(1,2))) System.out.println("Error: calculator operator not cleared when not understanding an input");
+
     
     
 
-    
-    //operator stored
-    
-    //test updateOperator
     
     
     // functions tested manually using main method
