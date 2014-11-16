@@ -36,8 +36,7 @@ public class FractionCalculator{
         {
             if (currentWord != "" && (i == input.length() || input.charAt(i) == ' ') ) // evaluate full word
             {
-                if (Character.isDigit(currentWord.charAt(0)) || (currentWord.length() > 1 && Character.isDigit(currentWord.charAt(1))))
-                    //its a number
+                if (isValidNumber(currentWord))
                 {
                     int fractionLocation =0, num=1,denom=1;
                     
@@ -100,6 +99,26 @@ public class FractionCalculator{
         }
 
         return current;
+    }
+    
+    public boolean isValidNumber(String input)
+    {
+        if (input.length() == 0 || (input.length() == 1 && input.charAt(0) == '-') ) return false;
+     
+        if ( !(input.charAt(0) == '-' && Character.isDigit(input.charAt(1))) && !Character.isDigit(input.charAt(0))) return false;
+     
+        if ( !Character.isDigit(input.charAt(input.length() - 1))) return false;
+     
+        boolean alreadyOneDivisor = false;
+        for (int i = 1; i < input.length(); i++)
+        {
+            if (input.charAt(i) == '/' && alreadyOneDivisor) return false;
+            else if (input.charAt(i) == '/') alreadyOneDivisor = true;
+            else if (input.charAt(i) == '-' && input.charAt(i - 1) !=  '/') return false;
+            else if (!Character.isDigit(input.charAt(i)) && input.charAt(i) != '-') return false;
+        }
+        
+        return true;
     }
     
     private boolean isIn(String word, String[] commands)
