@@ -93,7 +93,7 @@ public class FractionCalculator{
                 currentWord="";
             
             }
-            else if (input.charAt(i) != ' ') currentWord += input.charAt(i);
+            else if (i != input.length() && input.charAt(i) != ' ') currentWord += input.charAt(i);
         }
         
         }
