@@ -78,7 +78,11 @@ public class FractionCalculator{
                 else if (isIn(currentWord, callDivide))     {if (!updateOperator(Operator.DIVIDE)) return new Fraction(0,1);}
                 else if (isIn(currentWord, callAbs))        current = current.abs();
                 else if (isIn(currentWord, callNegate))     current = current.negate();
-                else if (isIn(currentWord, callClear))      current = new Fraction(0,1); //operands not cleared as cw didnt want this
+                else if (isIn(currentWord, callClear))
+                {
+                    current = new Fraction(0,1);
+                    currentOp = Operator.NONE; // although not specified on worksheet, clarified in class that operand should be cleared as well
+                }
                 else
                 {
                     System.out.println("Error: input \"" + currentWord + "\" not understood. Calculator reset.");
