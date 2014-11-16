@@ -42,15 +42,13 @@ public class FractionCalculatorTest{
     if(fc.isIn("7",new String[]{"*"})) System.out.println("Error: isIn() test 5 failed");
     */
     
-    //test leading and trailing spaces
-    if (!fc.evaluate(new Fraction(-1,2), "  1/2  ").equals(new Fraction(1,2))) System.out.println("Error: leading spaces error");
+    //test leading and trailing spaces are ignored
+    if (!fc.evaluate(new Fraction(-1,2), "  1/2  ").equals(new Fraction(1,2))) System.out.println("Error: leading/trailing spaces error");
     
     //test operator is stored between runs correctly
-    
     fc.evaluate(new Fraction(-1,2), " 1/2 * "); //This should store a multiply in the calculator
-    if (!fc.evaluate(new Fraction(2,1), "3").equals(new Fraction(6,1))) System.out.println("Error: calculator not storing operator between runs");
+    if (!fc.evaluate(new Fraction(2,1), "3").equals(new Fraction(6,1))) System.out.println("Error: calculator not storing operators between runs");
 
-    
     //test addition
      if (!fc.evaluate(new Fraction(1,2), " + 1/3").equals(new Fraction(5,6))) System.out.println("Error: addition test 1 failed");
      if (!fc.evaluate(new Fraction(-1,2), " + -1/3").equals(new Fraction(-5,6))) System.out.println("Error: addition test 2 failed");
@@ -71,19 +69,20 @@ public class FractionCalculatorTest{
     
     //test abs
     if (!fc.evaluate(new Fraction(-1,2), " abs ").equals(new Fraction(1,2))) System.out.println("Error: abs test 1 failed");
-    if (!fc.evaluate(new Fraction(7,1), " abs").equals(new Fraction(7,1))) System.out.println("Error: abs test 2 failed");
+    if (!fc.evaluate(new Fraction(6,1), " 7 abs").equals(new Fraction(7,1))) System.out.println("Error: abs test 2 failed");
     
     //test negate
     if (!fc.evaluate(new Fraction(-1,2), "n").equals(new Fraction(1,2))) System.out.println("Error: neg test 1 failed");
     if (!fc.evaluate(new Fraction(7,1), " n").equals(new Fraction(-7,1))) System.out.println("Error: neg test 2 failed");
+    if (!fc.evaluate(new Fraction(0,1), " n").equals(new Fraction(0,1))) System.out.println("Error: neg test 3 failed");
     
     //test clear
-    if (!fc.evaluate(new Fraction(-1,2), " * c 1/2").equals(new Fraction(1,2))) System.out.println("Error: clear test 1 failed");
-    if (!fc.evaluate(new Fraction(-1,2), " * 2 c").equals(new Fraction(0,1))) System.out.println("Error: clear test 2 failed");
+    if (!fc.evaluate(new Fraction(-1,2), " * 2 c").equals(new Fraction(0,1))) System.out.println("Error: clear test 1 failed");
+    if (!fc.evaluate(new Fraction(-1,2), " * c 1/2").equals(new Fraction(1,2))) System.out.println("Error: clear test 2 failed - operator not cleared.");
     
     //test quit
     if (!fc.evaluate(new Fraction(-1,2), " - 1/2 + q + 5").equals(new Fraction(-1,1))) System.out.println("Error: quit test 1 failed");
-    if (!fc.evaluate(new Fraction(1,2), "1/2").equals(new Fraction(1,2))) System.out.println("Error: quit test 2 failed. Operator not cleared.");
+    if (!fc.evaluate(new Fraction(1,2), "1/2").equals(new Fraction(1,2))) System.out.println("Error: quit test 2 failed - operator not cleared.");
     
     //test error messages
     
@@ -98,16 +97,21 @@ public class FractionCalculatorTest{
     if (!fc.evaluate(new Fraction(-1,2), " 1/2 * typo *").equals(new Fraction(0,1))) System.out.println("Error: calculator value not cleared when not understanding an input");
     if (!fc.evaluate(new Fraction(-1,2), " 1/2").equals(new Fraction(1,2))) System.out.println("Error: calculator operator not cleared when not understanding an input");
 
+    //test combination
     
-    
+    if (!fc.evaluate(new Fraction(-1,2), " -7 abs n * -1/2").equals(new Fraction(7,2))) System.out.println("Error: combination test failed");
 
-    
-    
     // functions tested manually using main method
     /*
-        - that it quit
-        - that it displays the propper greeting and leaving messages
-        - that it feeds in the correct fraction on evaluate method
+        tested by running fc.main(), and the inputting:
+            input line 1: 1/2 + 3/2
+            input line 2: -3
+            input line 3: q
+            
+        Following can be deduced:
+            - that it quit the program by typing q
+            - that it displays the proper greeting and leaving messages
+            - that it remember the current value to carry into the next input correctly
     */
     
     

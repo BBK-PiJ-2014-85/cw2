@@ -34,7 +34,7 @@ public class FractionCalculator{
         {
         for (int i = 0; i <= input.length(); i++)
         {
-            if (currentWord != "" && (i == input.length() || input.charAt(i) == ' ') ) // evaluate full word
+            if (currentWord != "" && (i == input.length() || input.charAt(i) == ' ') ) // evaluate once a full word
             {
                 if (isValidNumber(currentWord))
                 {
