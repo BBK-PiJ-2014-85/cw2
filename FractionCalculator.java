@@ -1,13 +1,13 @@
 
 import java.util.Scanner;
 
-
 public class FractionCalculator{
 
     private Fraction currentValue;
     private Operator currentOp;
     private String[] callAbs, callNegate, callClear, callQuit, callAdd, callSubtract, callDivide, callMultiply;
     private boolean quit;
+    
     
     public FractionCalculator()
     {
@@ -146,6 +146,9 @@ public class FractionCalculator{
         }
     
     }
+    
+    public void setQuit() {quit = true;}
+    public boolean getQuit() {return quit;}
 
 
     public static void main (String[] args)
@@ -156,15 +159,22 @@ public class FractionCalculator{
     
         Scanner kb = new Scanner(System.in);
     
-        while (!fc.quit)
+        while (!fc.getQuit())
         {
             System.out.print(fc.currentValue.toString() + "\n\t" );
+            
+            if (!kb.hasNextLine())
+            {
+            System.out.println("Goodbye");
+            fc.setQuit();
+            }
+            else
+            {
             String input = kb.nextLine();
             fc.currentValue = fc.evaluate(fc.currentValue, input );
+            if (fc.getQuit()) System.out.println(fc.currentValue.toString());
+            }
         }
-    
-        System.out.println(fc.currentValue.toString());
-        System.out.println("Goodbye");
     
     }
 
