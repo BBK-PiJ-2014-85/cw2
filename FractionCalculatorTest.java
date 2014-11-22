@@ -16,6 +16,7 @@ public class FractionCalculatorTest{
     if (!fc.evaluate(new Fraction(1,2), "-1").equals(new Fraction(-1,1))) System.out.println("Read fraction test 2 failed " + fc.evaluate(new Fraction(1,2), "1").toString());
     if (!fc.evaluate(new Fraction(1,2), "-1 1/2").equals(new Fraction(1,2))) System.out.println("error: test 7");
     if (!fc.evaluate(new Fraction(1,2), "-1/2 -1").equals(new Fraction(1,-1))) System.out.println("error: test 8");
+    if (!fc.evaluate(new Fraction(1,2), "").equals(new Fraction(1,2))) System.out.println("error: test 9");
     
     // test isValidNumber() method - Passed but now commented out as made private method
     /*
@@ -110,8 +111,10 @@ public class FractionCalculatorTest{
             
         Following can be deduced:
             - that it quit the program by typing q
-            - that it displays the proper greeting and leaving messages
+            - that it displays the proper greeting message and prints the final value before quitting
             - that it remember the current value to carry into the next input correctly
+        
+        tested inputting end of file (ctrl-D) by itself and seeing that goodbye was printed.
     */
     
     
