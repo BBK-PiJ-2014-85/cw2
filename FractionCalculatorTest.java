@@ -17,6 +17,7 @@ public class FractionCalculatorTest{
     if (!fc.evaluate(new Fraction(1,2), "-1 1/2").equals(new Fraction(1,2))) System.out.println("error: test 7");
     if (!fc.evaluate(new Fraction(1,2), "-1/2 -1").equals(new Fraction(1,-1))) System.out.println("error: test 8");
     if (!fc.evaluate(new Fraction(1,2), "").equals(new Fraction(1,2))) System.out.println("error: test 9");
+    if (!fc.evaluate(new Fraction(1,2), "1/2 + \n 7").equals(new Fraction(7,1))) System.out.println("error: test 9");
     
     // test isValidNumber() method - Passed but now commented out as made private method
     /*
@@ -46,9 +47,9 @@ public class FractionCalculatorTest{
     //test leading and trailing spaces are ignored
     if (!fc.evaluate(new Fraction(-1,2), "  1/2  ").equals(new Fraction(1,2))) System.out.println("Error: leading/trailing spaces error");
     
-    //test operator is stored between runs correctly
+    //test operator is not stored between runs
     fc.evaluate(new Fraction(-1,2), " 1/2 * "); //This should store a multiply in the calculator
-    if (!fc.evaluate(new Fraction(2,1), "3").equals(new Fraction(6,1))) System.out.println("Error: calculator not storing operators between runs");
+    if (!fc.evaluate(new Fraction(2,1), "3").equals(new Fraction(3,1))) System.out.println("Error: calculator storing operators between runs");
 
     //test addition
      if (!fc.evaluate(new Fraction(1,2), " + 1/3").equals(new Fraction(5,6))) System.out.println("Error: addition test 1 failed");
@@ -85,14 +86,15 @@ public class FractionCalculatorTest{
     if (!fc.evaluate(new Fraction(-1,2), " - 1/2 + q + 5").equals(new Fraction(-1,1))) System.out.println("Error: quit test 1 failed");
     if (!fc.evaluate(new Fraction(1,2), "1/2").equals(new Fraction(1,2))) System.out.println("Error: quit test 2 failed - operator not cleared.");
     
+    //test new line operator
+    if (!fc.evaluate(new Fraction(-1,2), " - 1/2 + 5 + \n 6").equals(new Fraction(6,1))) System.out.println("Error: newLine operator test 1");
+    if (!fc.evaluate(new Fraction(3,1), "\n").equals(new Fraction(3,1))) System.out.println("Error: newLine operator test 2");
+    
     //test error messages
     
-    System.out.println("The following three lines should have an error printed for having two consecutive operators:");
+    System.out.println("The following two lines should have an error printed for having two consecutive operators:");
     if (!fc.evaluate(new Fraction(-1,2), " 1/2 + 2 + * 3 *").equals(new Fraction(0,1))) System.out.println("Error: calculator not cleared on operator error");
     if (!fc.evaluate(new Fraction(-1,2), " 1/2 + 2 + abs * 3 *").equals(new Fraction(0,1))) System.out.println("Error: calculator not cleared on operator error");
-    fc.evaluate(new Fraction(1,1),"*");
-    if (!fc.evaluate(new Fraction(-1,2), " / 1/2 *").equals(new Fraction(0,1))) System.out.println("Error: calculator not cleared on operator error");
-    if (!fc.evaluate(new Fraction(1,2), " 2").equals(new Fraction(2,1))) System.out.println("Error: operator not cleared when producing operator error");
 
     System.out.println("The following line should have an error printed for having the word \"typo\" not understood:");
     if (!fc.evaluate(new Fraction(-1,2), " 1/2 * typo *").equals(new Fraction(0,1))) System.out.println("Error: calculator value not cleared when not understanding an input");
@@ -102,6 +104,11 @@ public class FractionCalculatorTest{
     
     if (!fc.evaluate(new Fraction(-1,2), " -7 abs n * -1/2").equals(new Fraction(7,2))) System.out.println("Error: combination test failed");
 
+    //test splitIntoLines() method - Method now made private test was run when public
+    
+    //if (!fc.splitIntoLines("\\n one two \\n three \\n").equals("\n one two \n three \n")) System.out.println("Error: splitIntoLines() method");
+
+
     // functions tested manually using main method
     /*
         tested by running fc.main(), and the inputting:
@@ -109,12 +116,14 @@ public class FractionCalculatorTest{
             input line 2: -3
             input line 3: q
             
-        Following can be deduced:
-            - that it quit the program by typing q
-            - that it displays the proper greeting message and prints the final value before quitting
-            - that it remember the current value to carry into the next input correctly
+            Following can be deduced:
+                - that it quit the program by typing q
+                - that it displays the proper greeting message and prints the final value before quitting
+                - that it remember the current value to carry into the next input correctly
         
         tested inputting end of file (ctrl-D) by itself and seeing that goodbye was printed.
+        
+        tested by inputting 1/2 \n 5/2 and seening that both 1/2 and 5/2 were printed in output.
     */
     
     
