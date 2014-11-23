@@ -5,7 +5,7 @@ public class FractionCalculator{
 
     private Fraction currentValue;
     private Operator currentOp;
-    private String[] callAbs, callNegate, callClear, callQuit, callAdd, callSubtract, callDivide, callMultiply;
+    private String[] callAbs, callNegate, callClear, callQuit, callAdd, callSubtract, callDivide, callMultiply, callNewLine;
     private boolean quit;
     
     
@@ -24,6 +24,7 @@ public class FractionCalculator{
         callSubtract = new String[] {"-"};
         callMultiply = new String[] {"*"};
         callDivide = new String[] {"/"};
+        callNewLine = new String[] {"\n"};
     }
 
     public Fraction evaluate(Fraction current, String input)
@@ -83,6 +84,7 @@ public class FractionCalculator{
                     current = new Fraction(0,1);
                     currentOp = Operator.NONE; // although not specified on worksheet, clarified in class that operand should be cleared as well
                 }
+                else if (isIn(currentWord, callNewLine)) currentOp = Operator.NONE;
                 else
                 {
                     System.out.println("Error: input \"" + currentWord + "\" not understood. Calculator reset.");
@@ -98,6 +100,7 @@ public class FractionCalculator{
         
         }
 
+        currentOp = Operator.NONE; //clear opator at end of input - i.e. next input will be a new line
         return current;
     }
     
@@ -156,26 +159,58 @@ public class FractionCalculator{
         FractionCalculator fc = new FractionCalculator();
         
         System.out.println("Welcome Paul to the Fraction calculator.");
+        System.out.println(fc.currentValue.toString());
     
         Scanner kb = new Scanner(System.in);
     
         while (!fc.getQuit())
         {
-            System.out.print(fc.currentValue.toString() + "\n\t" );
+            System.out.print("\t" );
             
             if (!kb.hasNextLine())
             {
-            System.out.println("Goodbye");
-            fc.setQuit();
+                System.out.println("Goodbye");
+                fc.setQuit();
             }
             else
             {
-            String input = kb.nextLine();
-            fc.currentValue = fc.evaluate(fc.currentValue, input );
-            if (fc.getQuit()) System.out.println(fc.currentValue.toString());
+                String input = kb.nextLine();
+                // should user input \n, convert this into a new line as nextLine() reads this as a string
+                String splitIntoLines = splitIntoLines(input);
+            
+                Scanner lines = new Scanner(splitIntoLines);
+                while (lines.hasNextLine())
+                {
+                    fc.currentValue = fc.evaluate(fc.currentValue, lines.nextLine());
+                    System.out.println(fc.currentValue.toString());
+                }
+                lines.close();
             }
         }
     
+        kb.close();
+    
+    }
+    
+    private static String splitIntoLines(String input)
+    {
+    
+        if (input.length() < 2) return input;
+        else if (input.equals("\\n")) return "\n";
+        else if ((input.length() > 2) && input.substring(0,3).equals("\\n ")) return splitIntoLines("\n" + input.substring(2));
+        else if ((input.length() > 2) && input.substring(input.length() - 3).equals(" \\n"))
+        {
+            return splitIntoLines(input.substring(0,input.length() - 2) + "\n");
+        }
+        else if (input.length() > 3)
+        {
+            for (int i = 0; i <= input.length() - 4; i++)
+            {
+                if (input.substring(i,i+4).equals(" \\n ")) return splitIntoLines(input.substring(0, i + 1) + "\n" + input.substring(i+3));
+            }
+        }
+    
+        return input;
     }
 
 }
