@@ -175,7 +175,9 @@ public class FractionCalculator{
             else
             {
                 String input = kb.nextLine();
-                // should user input \n, convert this into a new line as nextLine() reads this as a string
+                // should user input \n to input multiple lines, nextLine() reads \n as a string. This is converted below.
+                // I've assumed from the coursework example that this functionality is required, if it isnt then the solution would
+                // be to just input kb.nextLine into evaluate
                 String splitIntoLines = splitIntoLines(input);
             
                 Scanner lines = new Scanner(splitIntoLines);
