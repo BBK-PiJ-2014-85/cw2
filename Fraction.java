@@ -16,7 +16,7 @@ public class Fraction {
 
         int gcd = myGcd(num, denom);
         
-        if (gcd < 0)
+        if ( ( (denom / gcd) < 0))
         {
             setNumerator( (num * -1) / gcd);
             setDenominator( (denom * -1) / gcd);
