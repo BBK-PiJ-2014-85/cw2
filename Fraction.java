@@ -97,7 +97,13 @@ public class Fraction {
     {
         int num = this.getNumerator() * other.getDenominator();
         int denom = this.getDenominator() * other.getNumerator();
-        //Should denominator be zero then error message will be returned when Fraction is created
+        
+        if (denom == 0)
+        {
+            System.out.println("Error: Division by zero not possible");
+            return null;
+        }
+
         return new Fraction(num, denom);
     }
     
