@@ -33,6 +33,9 @@ if (!j.equals(f.subtract(g))) System.out.println("Subtraction failed");
 //test division
 Fraction k = new Fraction(3,5);
 if (!k.equals(f.divide(g))) System.out.println("Division failed");
+System.out.println("Error detailing division by zero should be provided on the next line:");
+if (k.divide(new Fraction(0,1)) != null) System.out.println("Test error that division by zero not correct");
+
 
 //test abs
 Fraction l = new Fraction(-3,5);
