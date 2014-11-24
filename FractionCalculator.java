@@ -56,6 +56,13 @@ public class FractionCalculator{
                         denom = Integer.parseInt(currentWord.substring(fractionLocation + 1));
                     }
                     
+                    if ( ( (num==0) && (currentOp == Operator.DIVIDE) ) || (denom == 0))
+                    {
+                        System.out.println("Error dividing by zero");
+                        currentOp = Operator.NONE;
+                        return new Fraction(0,1);
+                    }
+                    
                     Fraction numberInput = new Fraction(num, denom);
                     
                     if (currentOp == Operator.NONE) current = numberInput;
