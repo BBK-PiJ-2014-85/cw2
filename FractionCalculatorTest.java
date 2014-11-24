@@ -122,8 +122,6 @@ public class FractionCalculatorTest{
                 - that it remember the current value to carry into the next input correctly
         
         tested inputting end of file (ctrl-D) by itself and seeing that goodbye was printed.
-        
-        tested by inputting 1/2 \n 5/2 and seening that both 1/2 and 5/2 were printed in output.
     */
     
     
