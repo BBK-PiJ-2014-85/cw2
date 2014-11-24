@@ -175,46 +175,13 @@ public class FractionCalculator{
             else
             {
                 String input = kb.nextLine();
-                // should user input \n to input multiple lines, nextLine() reads \n as a string. This is converted below.
-                // I've assumed from the coursework example that this functionality is required, if it isnt then the solution would
-                // be to just input kb.nextLine into evaluate
-                String splitIntoLines = splitIntoLines(input);
-            
-                Scanner lines = new Scanner(splitIntoLines);
-                while (lines.hasNextLine())
-                {
-                    fc.currentValue = fc.evaluate(fc.currentValue, lines.nextLine());
-                    System.out.println(fc.currentValue.toString());
-                }
-                lines.close();
+                fc.currentValue = fc.evaluate(fc.currentValue, input);
+                System.out.println(fc.currentValue.toString());
             }
         }
     
         kb.close();
-    
     }
-    
-    private static String splitIntoLines(String input)
-    {
-    
-        if (input.length() < 2) return input;
-        else if (input.equals("\\n")) return "\n";
-        else if ((input.length() > 2) && input.substring(0,3).equals("\\n ")) return splitIntoLines("\n" + input.substring(2));
-        else if ((input.length() > 2) && input.substring(input.length() - 3).equals(" \\n"))
-        {
-            return splitIntoLines(input.substring(0,input.length() - 2) + "\n");
-        }
-        else if (input.length() > 3)
-        {
-            for (int i = 0; i <= input.length() - 4; i++)
-            {
-                if (input.substring(i,i+4).equals(" \\n ")) return splitIntoLines(input.substring(0, i + 1) + "\n" + input.substring(i+3));
-            }
-        }
-    
-        return input;
-    }
-
 }
 
 enum Operator{
