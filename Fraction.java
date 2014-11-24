@@ -97,6 +97,7 @@ public class Fraction {
     {
         int num = this.getNumerator() * other.getDenominator();
         int denom = this.getDenominator() * other.getNumerator();
+        //Should denominator be zero then error message will be returned when Fraction is created
         return new Fraction(num, denom);
     }
     
