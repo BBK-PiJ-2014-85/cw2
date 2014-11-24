@@ -10,14 +10,14 @@ public class FractionCalculatorTest{
     
     if (!fc.evaluate(new Fraction(1,2), "1/3").equals(new Fraction(1,3))) System.out.println("Read fraction test 1 failed " + fc.evaluate(new Fraction(1,2), "1/3").toString());
     if (!fc.evaluate(new Fraction(1,2), "1").equals(new Fraction(1,1))) System.out.println("Read fraction test 2 failed " + fc.evaluate(new Fraction(1,2), "1").toString());
-    if (!fc.evaluate(new Fraction(1,2), "-1/3").equals(new Fraction(1,-3))) System.out.println("Read fraction test 2 failed " + fc.evaluate(new Fraction(1,2), "1").toString());
-    if (!fc.evaluate(new Fraction(1,2), "-1/-3").equals(new Fraction(1,3))) System.out.println("Read fraction test 2 failed " + fc.evaluate(new Fraction(1,2), "1").toString());
-    if (!fc.evaluate(new Fraction(1,2), "1/-3").equals(new Fraction(1,-3))) System.out.println("Read fraction test 2 failed " + fc.evaluate(new Fraction(1,2), "1").toString());
-    if (!fc.evaluate(new Fraction(1,2), "-1").equals(new Fraction(-1,1))) System.out.println("Read fraction test 2 failed " + fc.evaluate(new Fraction(1,2), "1").toString());
+    if (!fc.evaluate(new Fraction(1,2), "-1/3").equals(new Fraction(1,-3))) System.out.println("Read fraction test 3 failed " + fc.evaluate(new Fraction(1,2), "-1/3").toString());
+    if (!fc.evaluate(new Fraction(1,2), "-1/-3").equals(new Fraction(1,3))) System.out.println("Read fraction test 4 failed " + fc.evaluate(new Fraction(1,2), "-1/-3").toString());
+    if (!fc.evaluate(new Fraction(1,2), "1/-3").equals(new Fraction(1,-3))) System.out.println("Read fraction test 5 failed " + fc.evaluate(new Fraction(1,2), "1/-3").toString());
+    if (!fc.evaluate(new Fraction(1,2), "-1").equals(new Fraction(-1,1))) System.out.println("Read fraction test 6 failed " + fc.evaluate(new Fraction(1,2), "-1").toString());
     if (!fc.evaluate(new Fraction(1,2), "-1 1/2").equals(new Fraction(1,2))) System.out.println("error: test 7");
     if (!fc.evaluate(new Fraction(1,2), "-1/2 -1").equals(new Fraction(1,-1))) System.out.println("error: test 8");
     if (!fc.evaluate(new Fraction(1,2), "").equals(new Fraction(1,2))) System.out.println("error: test 9");
-    if (!fc.evaluate(new Fraction(1,2), "1/2 + \n 7").equals(new Fraction(7,1))) System.out.println("error: test 9");
+    if (!fc.evaluate(new Fraction(1,2), "1/2 + \n 7").equals(new Fraction(7,1))) System.out.println("error: test 10");
     
     // test isValidNumber() method - Passed but now commented out as made private method
     /*
@@ -103,6 +103,11 @@ public class FractionCalculatorTest{
     //test combination
     
     if (!fc.evaluate(new Fraction(-1,2), " -7 abs n * -1/2").equals(new Fraction(7,2))) System.out.println("Error: combination test failed");
+    
+    //test dividing by zero beings up an error
+    System.out.println("Two error messages for dividing by zero should be printed");
+    if (!fc.evaluate(new Fraction(-1,2), " -4 / 0/3 + 4").equals(new Fraction(0,1))) System.out.println("Error: Test failed for divinding by zero");
+    if (!fc.evaluate(new Fraction(-1,2), " -4 / 3/0 + 4").equals(new Fraction(0,1))) System.out.println("Error: Test failed for divinding by zero");
 
     //test splitIntoLines() method - Method now made private test was run when public
     
