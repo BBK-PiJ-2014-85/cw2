@@ -15,8 +15,17 @@ public class Fraction {
         }
 
         int gcd = myGcd(num, denom);
+        
+        if (gcd < 0)
+        {
+            setNumerator( (num * -1) / gcd);
+            setDenominator( (denom * -1) / gcd);
+        }
+        else
+        {
         setNumerator(num / gcd);
         setDenominator(denom / gcd);
+        }
     }
     
     @Override
@@ -26,7 +35,6 @@ public class Fraction {
     // added a check for -1 as well as this can be simplified in a similar way
     
         if (getDenominator() == 1) return "" + getNumerator();
-        else if (getDenominator() == -1) return "" + (getNumerator() * -1);
         else return "" + getNumerator() + '/' + getDenominator();
     }
 
